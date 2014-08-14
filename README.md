@@ -4,3 +4,13 @@ SAproject
 Sentiment Analysis Project
 
 This is a project for performing sentiment analysis on the Yelp academic data set. 
+
+
+Naive-Bayes
+===========
+
+To use the naive Bayes classifier, use the following command line:
+printf "review" | python naive-bayes/bag-of-words.py review.txt | python naive-bayes/nb-classifier.py trained.json
+where review.txt is the review to classify, formatted as a single line of the form
+"review" <tab> "<text of review>"
+and trained.json is the output of the trainer.
