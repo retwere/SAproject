@@ -22,7 +22,7 @@ where `pos` and `neg` are the categories, `preprocessed.json` is the preprocesse
 
 Then we run the trainer to calculate the "word scores" (these are the log-estimates of the probabilities p_i). Use this command line:
 ```sh
-python naive-bayes/counter.py bag.json | python naive-bayes/trainer.py bag.json > trained.json
+python naive-bayes/counter.py bag.json | python naive-bayes/nb-trainer.py bag.json > trained.json
 ```
 where `bag.json` is the "bag of words" from the previous command and `trained.json` is the output file.
 
