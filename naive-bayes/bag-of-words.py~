@@ -1,0 +1,26 @@
+# Copyright 2014 Jake Fowler and Stephen Ra
+
+"""Implements a naive-Bayes trainer to gather the data necessary to classify
+ reviews into positive or negative.
+"""
+
+import re
+
+from mrjob.job import MRJob
+from mrjob.protocol import JSONValueProtocol
+
+
+def words(text):
+    """An iterator over the words in text.
+    """
+
+    for word in text.split():
+        # create the key by lowercasing the word and dropping non-alpha characters
+        key = re.sub('[^a-z]', '', word.lower())
+        
+        if not key:
+            continue
+
+        yield key
+
+
