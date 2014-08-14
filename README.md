@@ -9,7 +9,9 @@ This is a project for performing sentiment analysis on the Yelp academic data se
 Naive-Bayes
 ===========
 
-To use the naive Bayes classifier, use the following command line:
+#Classifying
+
+To use the naive-Bayes classifier, use the following command line:
 ```sh
 printf "review" | python naive-bayes/bag-of-words.py review.txt | python naive-bayes/nb-classifier.py trained.json
 ```
