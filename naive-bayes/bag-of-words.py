@@ -59,6 +59,7 @@ class BagOfWords(MRJob):
 if __name__ == '__main__':
     #Read from stdin the list of possible categories (one per line)
     for line in sys.stdin.readlines():
-        BagOfWords.possible_categories.append(line)
+        # Note: rstrip is needed to strip off trailing \n from line
+        BagOfWords.possible_categories.append(line.rstrip()) 
 
     BagOfWords().run()
