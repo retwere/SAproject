@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<body>
+
+
+<form id="form">
+<textarea id="txt"></textarea>
+<button id="go" type="submit">Go!</button>
+</form>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+input_file = "test_training_data.json";
+review_file = "review.txt";
+
+review_text = "";
+data = {};
+
+function normalize(word) {
+    return word.toLowerCase().replace(/[^a-z]/g, "");
+}
+
+d3.select("#form").on("submit",
+function () {
+    review_text = d3.select("#txt").property("value");
+    bod = d3.select("body");
+
+    review = review_text.split(/\s/g);
+
+    running_total = 0
+
+    review.forEach(function(word) {
+        if(normalize(word) != "") {
+            if(data[normalize(word)]) {
+                score = data[normalize(word)];
+                running_total += score;
+                size = Math.max(Math.abs(score)*50, 10);
+                if(score == 0) {
+                    color = "black";
+                } else if(score > 0) {
+                    color = "green";
+                } else {
+                    color = "red";
+                }
+            } else {
+                size = 8;
+                color = "black";
+            }
+        }
+        bod.append("text").text(word+" ").style("font-size", size + "px").style("color", color);
+    })
+
+    bod.append("text").text(running_total);
+
+    d3.event.preventDefault();
+}
+);
+
+d3.json(input_file, function(error, json) {data = json} );
+
+
+
+</script>
+
+
+</body>
